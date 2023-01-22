@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import MachineItems from "./сomponents/MachineItems";
+import Menu from "./сomponents/Menu";
+import {IPurchasedItems} from "./types";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [vendingCurrentBalance, setVendingCurrentBalance] = useState<number>(0)
+    const [purchasedItems, setPurchasedItems] = useState<IPurchasedItems[]>([])
+
+    return (
+        <div className="App">
+            <MachineItems vendingCurrentBalance={vendingCurrentBalance}
+                          setVendingCurrentBalance={setVendingCurrentBalance}
+                          setPurchasedItems={setPurchasedItems}
+                          purchasedItems={purchasedItems}
+            />
+
+            <Menu setVendingCurrentBalance={setVendingCurrentBalance}
+                  purchasedItems={purchasedItems}
+                  vendingCurrentBalance={vendingCurrentBalance}
+            />
+        </div>
+    );
 }
 
 export default App;
